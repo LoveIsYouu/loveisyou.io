@@ -5,31 +5,36 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Is...</title>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
-    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Lovescript&display=swap">
     <style>
         body {
-            font-family: 'Roboto', sans-serif;
+            font-family: 'Lovescript', cursive;
             text-align: center;
-            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-            background-size: cover;
             margin: 0;
             padding: 0;
             overflow: hidden; /* Ensure no scrollbars appear */
-            animation: changeBackground 10s infinite;
+        }
+        .background {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background-size: cover;
+            background-position: center;
+            animation: changeBackground 20s infinite;
         }
         @keyframes changeBackground {
-            0% {
-                background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-                background-size: cover;
-            }
-            50% {
-                background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-                background-size: cover;
-            }
-            100% {
-                background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
-                background-size: cover;
-            }
+            0% { background-image: url('image1.jpg'); }
+            12.5% { background-image: url('image2.jpg'); }
+            25% { background-image: url('image3.jpg'); }
+            37.5% { background-image: url('image4.jpg'); }
+            50% { background-image: url('image5.jpg'); }
+            62.5% { background-image: url('image6.jpg'); }
+            75% { background-image: url('image7.jpg'); }
+            87.5% { background-image: url('image8.jpg'); }
+            100% { background-image: url('image1.jpg'); }
         }
         .container {
             margin-top: 50px;
@@ -38,12 +43,15 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: inline-block;
+            width: 90%; /* Make it responsive */
+            max-width: 600px; /* Limit the maximum width */
         }
         .love-text {
             font-size: 3em;
             margin-bottom: 20px;
             color: white;
             animation: heartbeat 1.5s infinite;
+            font-style: italic; /* Italic style added */
         }
         @keyframes heartbeat {
             0%, 100% {
@@ -54,7 +62,7 @@
             }
         }
         .love-image {
-            max-width: 50%; /* Reduce the size of the image */
+            max-width: 100%; /* Make it responsive */
             height: auto;
         }
         .love-animation {
@@ -67,40 +75,33 @@
             50% { opacity: 1; }
             100% { opacity: 0; }
         }
-        .flower {
+        .heart {
             position: absolute;
             top: -50px;
-            width: 20px;
-            height: 20px;
-            background: red;
-            border-radius: 50%;
-            animation: fall linear infinite;
+            font-size: 2em;
+            animation: fall 10s linear infinite; /* Slowed down the fall speed */
         }
         @keyframes fall {
             to {
                 transform: translateY(100vh);
             }
         }
-        .rain {
-            position: absolute;
-            top: -50px;
-            width: 2px;
-            height: 10px;
-            background: rgba(255, 255, 255, 0.5);
-            animation: rain-fall linear infinite;
-        }
-        @keyframes rain-fall {
-            to {
-                transform: translateY(100vh);
+        @media (max-width: 600px) {
+            .love-text {
+                font-size: 2em; /* Smaller font size for mobile */
+            }
+            .love-animation {
+                font-size: 1.5em; /* Smaller font size for mobile */
             }
         }
     </style>
 </head>
 <body>
+    <div class="background"></div>
     <div class="container">
-        <div class="love-text">Love is <span id="user-input">You</span></div>
+        <div class="love-text" id="love-text">Love is making you smile :)</div>
+        <div class="love-animation">❤️</div> <!-- Red heart added below the text -->
         <img src="love_image.jpg" alt="Love Image" class="love-image">
-        <div class="love-animation">❤️</div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
@@ -109,42 +110,29 @@
                 document.getElementById('user-input').innerText = savedText;
             }
 
-            // Create falling flowers
+            // Create falling hearts
             for (var i = 0; i < 50; i++) {
-                createFlower();
+                createHeart();
             }
 
-            // Create rain drops
-            for (var i = 0; i < 100; i++) {
-                createRain();
-            }
+            // Stop the love-text animation after 4 seconds
+            setTimeout(function() {
+                document.getElementById('love-text').style.animationPlayState = 'paused';
+            }, 4000);
         });
 
-        function createFlower() {
-            var flower = document.createElement('div');
-            flower.className = 'flower';
-            flower.style.left = Math.random() * 100 + 'vw';
-            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
-            document.body.appendChild(flower);
+        function createHeart() {
+            var heart = document.createElement('div');
+            heart.className = 'heart';
+            heart.innerHTML = '❤️';
+            heart.style.left = Math.random() * 100 + 'vw';
+            heart.style.animationDuration = Math.random() * 10 + 5 + 's'; /* Slowed down the fall speed */
+            document.body.appendChild(heart);
 
-            // Remove the flower after it falls
-            flower.addEventListener('animationend', function() {
-                flower.remove();
-                createFlower(); // Create a new flower
-            });
-        }
-
-        function createRain() {
-            var rain = document.createElement('div');
-            rain.className = 'rain';
-            rain.style.left = Math.random() * 100 + 'vw';
-            rain.style.animationDuration = Math.random() * 1 + 0.5 + 's';
-            document.body.appendChild(rain);
-
-            // Remove the rain drop after it falls
-            rain.addEventListener('animationend', function() {
-                rain.remove();
-                createRain(); // Create a new rain drop
+            // Remove the heart after it falls
+            heart.addEventListener('animationend', function() {
+                heart.remove();
+                createHeart(); // Create a new heart
             });
         }
     </script>
