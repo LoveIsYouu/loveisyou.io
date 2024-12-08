@@ -120,7 +120,7 @@
             <img src="image8.jpg" alt="Image 8">
         </div>
     </div>
-    <audio id="background-music" src="audio/soundtrack.mp3" autoplay loop></audio>
+    <audio id="background-music" src="soundtrack.mp3" autoplay loop></audio>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var savedText = localStorage.getItem('loveText');
@@ -150,4 +150,9 @@
             // Remove the heart after it falls
             heart.addEventListener('animationend', function() {
                 heart.remove();
-                createHeart(); //
+                createHeart(); // Create a new heart
+            });
+        }
+    </script>
+</body>
+</html>
