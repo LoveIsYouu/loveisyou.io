@@ -4,31 +4,149 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Love Is...</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
+    <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Roboto:wght@400;700&display=swap">
     <style>
         body {
-            font-family: Arial, sans-serif;
+            font-family: 'Roboto', sans-serif;
             text-align: center;
-            background-color: #f0f0f0;
+            background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+            background-size: cover;
             margin: 0;
             padding: 0;
+            overflow: hidden; /* Ensure no scrollbars appear */
+            animation: changeBackground 10s infinite;
+        }
+        @keyframes changeBackground {
+            0% {
+                background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+                background-size: cover;
+            }
+            50% {
+                background: url('https://images.unsplash.com/photo-1518837695005-2083093ee35b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+                background-size: cover;
+            }
+            100% {
+                background: url('https://images.unsplash.com/photo-1506748686214-e9df14d4d9d0?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') no-repeat center center fixed;
+                background-size: cover;
+            }
         }
         .container {
             margin-top: 50px;
+            background: rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            display: inline-block;
         }
         .love-text {
-            font-size: 2em;
+            font-size: 3em;
             margin-bottom: 20px;
+            color: white;
+            animation: heartbeat 1.5s infinite;
+        }
+        @keyframes heartbeat {
+            0%, 100% {
+                transform: scale(1);
+            }
+            50% {
+                transform: scale(1.2);
+            }
         }
         .love-image {
-            max-width: 100%;
+            max-width: 50%; /* Reduce the size of the image */
             height: auto;
+        }
+        .love-animation {
+            font-size: 2em;
+            color: red;
+            animation: fadeIn 2s infinite;
+        }
+        @keyframes fadeIn {
+            0% { opacity: 0; }
+            50% { opacity: 1; }
+            100% { opacity: 0; }
+        }
+        .flower {
+            position: absolute;
+            top: -50px;
+            width: 20px;
+            height: 20px;
+            background: red;
+            border-radius: 50%;
+            animation: fall linear infinite;
+        }
+        @keyframes fall {
+            to {
+                transform: translateY(100vh);
+            }
+        }
+        .rain {
+            position: absolute;
+            top: -50px;
+            width: 2px;
+            height: 10px;
+            background: rgba(255, 255, 255, 0.5);
+            animation: rain-fall linear infinite;
+        }
+        @keyframes rain-fall {
+            to {
+                transform: translateY(100vh);
+            }
         }
     </style>
 </head>
 <body>
     <div class="container">
-        <div class="love-text">Love is You</div>
+        <div class="love-text">Love is <span id="user-input">You</span></div>
         <img src="love_image.jpg" alt="Love Image" class="love-image">
+        <div class="love-animation">❤️</div>
     </div>
+    <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            var savedText = localStorage.getItem('loveText');
+            if (savedText) {
+                document.getElementById('user-input').innerText = savedText;
+            }
+
+            // Create falling flowers
+            for (var i = 0; i < 50; i++) {
+                createFlower();
+            }
+
+            // Create rain drops
+            for (var i = 0; i < 100; i++) {
+                createRain();
+            }
+        });
+
+        function createFlower() {
+            var flower = document.createElement('div');
+            flower.className = 'flower';
+            flower.style.left = Math.random() * 100 + 'vw';
+            flower.style.animationDuration = Math.random() * 3 + 2 + 's';
+            document.body.appendChild(flower);
+
+            // Remove the flower after it falls
+            flower.addEventListener('animationend', function() {
+                flower.remove();
+                createFlower(); // Create a new flower
+            });
+        }
+
+        function createRain() {
+            var rain = document.createElement('div');
+            rain.className = 'rain';
+            rain.style.left = Math.random() * 100 + 'vw';
+            rain.style.animationDuration = Math.random() * 1 + 0.5 + 's';
+            document.body.appendChild(rain);
+
+            // Remove the rain drop after it falls
+            rain.addEventListener('animationend', function() {
+                rain.remove();
+                createRain(); // Create a new rain drop
+            });
+        }
+    </script>
 </body>
 </html>
