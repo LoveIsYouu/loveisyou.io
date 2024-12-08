@@ -98,6 +98,16 @@
                 width: 22%; /* Adjusted width for mobile */
             }
         }
+        .play-button {
+            background-color: #ff69b4;
+            color: white;
+            padding: 10px 20px;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            font-size: 1em;
+            margin-top: 20px;
+        }
     </style>
 </head>
 <body>
@@ -105,6 +115,7 @@
         <div class="love-text" id="love-text">Love is making you smile :)</div>
         <div class="love-animation">❤️</div> <!-- Red heart added below the text -->
         <img src="love_image.jpg" alt="Love Image" class="love-image">
+        <button class="play-button" onclick="playMusic()">Play Music</button>
     </div>
     <div class="background">
         <div class="row">
@@ -120,7 +131,7 @@
             <img src="image8.jpg" alt="Image 8">
         </div>
     </div>
-    <audio id="background-music" src="soundtrack.mp3" autoplay loop></audio>
+    <audio id="background-music" src="soundtrack.mp3" loop></audio>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
             var savedText = localStorage.getItem('loveText');
@@ -152,6 +163,11 @@
                 heart.remove();
                 createHeart(); // Create a new heart
             });
+        }
+
+        function playMusic() {
+            var audio = document.getElementById('background-music');
+            audio.play();
         }
     </script>
 </body>
