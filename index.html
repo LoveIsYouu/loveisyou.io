@@ -27,22 +27,15 @@
             justify-content: center;
             align-items: center;
         }
-        .background img {
-            width: 25%; /* Adjusted width for the images */
-            height: auto;
-            margin: 5px;
-            animation: changeImage 22.4s infinite;
+        .background div {
+            display: flex;
+            justify-content: center;
+            width: 100%;
         }
-        @keyframes changeImage {
-            0% { opacity: 1; }
-            12.5% { opacity: 0; }
-            25% { opacity: 1; }
-            37.5% { opacity: 0; }
-            50% { opacity: 1; }
-            62.5% { opacity: 0; }
-            75% { opacity: 1; }
-            87.5% { opacity: 0; }
-            100% { opacity: 1; }
+        .background img {
+            width: 22%; /* Adjusted width for the images */
+            height: auto;
+            margin: 1%; /* Margin for spacing between images */
         }
         .container {
             margin-top: 20px; /* Adjusted margin to move it higher */
@@ -114,14 +107,18 @@
         <img src="love_image.jpg" alt="Love Image" class="love-image">
     </div>
     <div class="background">
-        <img src="image1.jpg" alt="Image 1">
-        <img src="image2.jpg" alt="Image 2">
-        <img src="image3.jpg" alt="Image 3">
-        <img src="image4.jpg" alt="Image 4">
-        <img src="image5.jpg" alt="Image 5">
-        <img src="image6.jpg" alt="Image 6">
-        <img src="image7.jpg" alt="Image 7">
-        <img src="image8.jpg" alt="Image 8">
+        <div>
+            <img src="image1.jpg" alt="Image 1">
+            <img src="image2.jpg" alt="Image 2">
+            <img src="image3.jpg" alt="Image 3">
+            <img src="image4.jpg" alt="Image 4">
+        </div>
+        <div>
+            <img src="image5.jpg" alt="Image 5">
+            <img src="image6.jpg" alt="Image 6">
+            <img src="image7.jpg" alt="Image 7">
+            <img src="image8.jpg" alt="Image 8">
+        </div>
     </div>
     <script>
         document.addEventListener("DOMContentLoaded", function() {
