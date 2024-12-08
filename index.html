@@ -44,7 +44,7 @@
             border-radius: 10px;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             display: inline-block;
-            width: 90%; /* Make it responsive */
+            width: calc(100% - 44%); /* Adjusted width to align with images */
             max-width: 600px; /* Limit the maximum width */
         }
         .love-text {
@@ -107,6 +107,12 @@
             }
             .background img {
                 width: 22%; /* Adjusted width for mobile */
+            }
+            .heart {
+                color: #B7121F; /* Ensure hearts are red on mobile */
+            }
+            .container {
+                width: calc(100% - 10%); /* Adjusted width for mobile */
             }
         }
     </style>
